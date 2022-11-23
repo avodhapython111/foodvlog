@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Sislaf</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hm/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<!--<style>
+. .dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding: 56px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+  .abcd{
+    height:100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+  }
+</style>-->
+</head>
+<body id="top">
+
+
+<!--<div class="category">
+
+  <b style="color:white">
+<a href={{i.get_url}}>{{i.name}}</a><br>    
+  </b>
+ 
+
+</div> -->
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <section id="introblocks">
+      <ul class="nospace group btmspace-80">
+        {% for i in pr %}
+
+        <li class="one_third">
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height:400 ;"></a>
+            <figcaption>
+              <h6 class="heading">{{i.name}}</h6>
+              <p>{{i.desc|truncatewords:17}}</p>
+              <br>
+              <p>Price: {{i.price}} Rs</p>
+              <br>
+              <p>Stock left:{{i.stock}}</p>
+            </figcaption>
+          </figure>
+        </li>
+  {% endfor %}      
+
+      </ul>
+    </section>
+    <!-- ################################################################################################ -->
+    <hr class="btmspace-80">
+
+    <div class="clear"></div>
+  </main>
+</div>
+
+<div class="bgded overlay row4" style="background-image:url('{% static 'hm/images/demo/backgrounds/05.png' %});">
+
+</div>
+<script src="{% static 'hm/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.mobilemenu.js' %}"></script>
+
+</body>
+</html>
+{% endblock %}

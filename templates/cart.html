@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+</head>
+<body>
+<h4>Cart <span class="price" style="color:white"><i class="fa fa-shopping-cart"></i> <b>{{itc}}</b></span></h4> 
+{% for i in ci %}  
+  <div class="col-25">
+    <div class="container">
+        <a href="{% url 'remove' i.prodt.id %}"><i class="fa fa-trash-o" style="font-size:20px"></i></a>
+
+      &nbsp; <a href="{{i.prodt.get_url}}"><img src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}" style="height:70 ;width:70;">
+      <p>{{i.prodt.name}}</a> <span class="price">${{i.total}}<br><a href="{% url 'addcart' i.prodt.id %}"><i class="fa fa-plus" style="font-size:10px ;"></i></a>&nbsp;&nbsp;{{i.quan}}&nbsp;&nbsp; <a href="{% url 'cart_decrement' i.prodt.id %}" > <i class="fa fa-minus" style="font-size:10px ;"></i></a></span></p>
+      <p>{{i.prodt.price}} * 1</p>
+      <p> Quantity: {{i.quan}}</p>
+      
+      <hr>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<div>
+<p><span class="price" style="color:white; background-color: red; font-family: 'comic sans ms';"><b>Total: ${{t}}</b></span></p>
+</div>
+<br><br><br>
+</body>
+</html>
+{% endblock %}
+
